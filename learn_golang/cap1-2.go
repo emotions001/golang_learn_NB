@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -59,4 +60,24 @@ func main() {
 	}
 
 	// GoLang的循环
+	var count = 10
+	for count > 0 {
+		fmt.Println(count)
+		time.Sleep(time.Second) // 延时函数
+		count--
+	}
+	fmt.Println("Liftoff!")
+
+	var degress = 0
+	for {
+		fmt.Println(degress)
+		degress++
+		if degress >= 360 {
+			degress = 0
+			if rand.Intn(2) == 0 { // 在随机数不等于0之前，degress会一直从0-360不停重复循环（旋转）
+				break
+			}
+		}
+	}
+
 }
