@@ -11,7 +11,7 @@ import (
 
 var era = "AD" // era变量在整个包都是可用的
 
-func main() { // era变量和year变量都处于作用域之内
+func function1() { // era变量和year变量都处于作用域之内
 	year := 2024
 	switch month := rand.Intn(12) + 1; month { // 变量era、year和month都处于作用域之内
 	case 2:
@@ -24,6 +24,26 @@ func main() { // era变量和year变量都处于作用域之内
 		day := rand.Intn(31) + 1 // 这两个day变量是全新声明的变量，跟上面声明的同名变量并不相同
 		fmt.Println(era, year, month, day)
 	} // month变量和day变量不再处于作用域之内
+}
+
+// 以下是针对function1的优化重构版本，收窄了作用域，减少了计算机负担
+func function2() {
+	year := 2024
+	month := rand.Intn(12) + 1
+	dayInMonth := rand.Intn(31) + 1
+	switch month {
+	case 2:
+		dayInMonth = 29
+	case 4, 6, 9, 11:
+		dayInMonth = 30
+	}
+	day := rand.Intn(dayInMonth) + 1
+	fmt.Println(era, year, month, day)
+}
+
+func main() {
+	function1()
+	function2()
 }
 
 // 因为对era变量的声明位于main函数之外的包作用域中，所以它对于main包中的所有函数都是可见的。
