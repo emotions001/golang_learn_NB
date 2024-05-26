@@ -46,4 +46,12 @@ func main() {
 	// t := time.Now()
 	// fmt.Println(t)
 
+	// 使用科学计数法表示一个很大的数字，并且指定数据类型为int64
+	const lightSpeed = 299792 // km/s
+	const secondsPerDay = 86400
+
+	var distance int64 = 41.3e12
+	fmt.Println("Alpha Centauri is", distance, "km away.")
+	days := distance / lightSpeed / secondsPerDay
+	fmt.Println("That is", days, "days of travel at light speed.")
 }
