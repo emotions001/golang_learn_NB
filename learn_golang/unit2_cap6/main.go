@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	// "time"
 )
 
 func main() {
@@ -17,18 +18,32 @@ func main() {
 	fmt.Println(pi4)
 
 	// 零值
-	
+
 	// 当声明一个变量但未赋值，默认就是零值
 	var price float64
 	fmt.Println(price)
 
-
 	// 打印浮点类型数值，使用 Printf
-	third := 10.0/3
+	third := 10.0 / 3
 	fmt.Println(third)
 	fmt.Printf("%v\n", third)
 	fmt.Printf("%f\n", third)
 	fmt.Printf("%.3f\n", third)
 	fmt.Printf("%4.2f\n", third)
+
+	// 声明整数类型
+
+	// 因为Go在进行类型推断的时候总是会选择int类型作为整数值的类型，所以下面这3行代码的意义是完全相同的：
+	year1 := 2024
+	var year2 = 2024
+	var year3 int = 2024
+	fmt.Println(year1, year2, year3)
+	// 为了避免在Printf函数中重复使用同一个变量两次，我们可以将[1]添加到第二个格式化变量%v中，以此来复用第一个格式化变量的值year1，从而避免代码重复：
+	fmt.Printf("year is %T, and the number of year is %[1]v \n", year1) // 使用格式化变量标识符 %T 可以打印出变量的类型
+
+	// future := time.Unix(12622780800, 0)
+	// fmt.Println(future)
+	// t := time.Now()
+	// fmt.Println(t)
 
 }
